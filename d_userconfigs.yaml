@@ -33,6 +33,7 @@
         dest: /home/aaron/gits/
         clone: yes
         update: yes
+        force: yes
 
     - name: stow configfiles
       ansible.builtin.command: "stow -v  --target=/home/aaron/ --dir=/home/aaron/gits/userconfigs ."
