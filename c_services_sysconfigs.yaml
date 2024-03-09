@@ -1,0 +1,70 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Copy grub
+      ansible.builtin.copy:
+        src: sysconfigs/grub
+        dest: /etc/default/grub
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+
+    - name: Save grub
+      ansible.builtin.command: "/usr/bin/grub-mkconfig -o /boot/grub/grub.cfg"
+
+    - name: Copy mkinitcpio
+      ansible.builtin.copy:
+        src: sysconfigs/mkinitcpio.conf
+        dest: /etc/mkinitcpio.conf
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+
+    - name: Run mkinitcpio
+      ansible.builtin.command: "/usr/bin/mkinitcpio -P"
+
+    - name: Create pacman Hook directory
+      ansible.builtin.file:
+        path: /etc/pacman.d/hooks
+        state: directory
+        owner: root
+        group: root
+        mode: u=rwx,g=rx,o=rx
+
+    - name: Copy Nvidia Hook
+      ansible.builtin.copy:
+        src: sysconfigs/nvidia.hook
+        dest: /etc/pacman.d/hooks/nvidia.hook
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+
+    - name: Create tty directory
+      ansible.builtin.file:
+        path: /etc/systemd/system/getty@tty1.service.d/
+        state: directory
+        owner: root
+        group: root
+        mode: u=rwx,g=rx,o=rx
+
+    - name: Copy tty autologin
+      ansible.builtin.copy:
+        src: sysconfigs/autologin.conf
+        dest: /etc/systemd/system/getty@tty1.service.d/autologin.conf
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+
+    - name: systemd services
+      systemd:
+        enabled: true
+        state: started
+        name: "{{ item }}"
+      with_items:
+        - zfs-import-cache.service
+        - zfs-mount.service
+        - zfs.target
+        - zfs-import.target
+        - NetworkManager
+        - zramd

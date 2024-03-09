@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Create directory to stow and git
+      ansible.builtin.file:
+        path: /home/aaron/gits
+        state: directory
+        owner: aaron
+        group: aaron
+        mode: u=rwx,g=rx,o=rx

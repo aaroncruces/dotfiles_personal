@@ -1,0 +1,173 @@
+---
+- hosts: all
+  become: true
+  become_user: aur_builder
+  tasks:
+    - name: install aur helper yay
+      kewlfft.aur.aur:
+        use: makepkg
+        name:
+          - yay
+
+    - name: install minimal to work
+      kewlfft.aur.aur:
+        name:
+          - zsh
+          - zramd
+
+    - name: install mesa
+      kewlfft.aur.aur:
+        name:
+          - mesa
+          - lib32-mesa
+          - libva-mesa-driver
+          - lib32-libva-mesa-driver
+          - mesa-vdpau
+          - lib32-mesa-vdpau
+          - libvdpau-va-gl
+
+    - name: install audio
+      kewlfft.aur.aur:
+        name:
+          - pipewire
+          - lib32-pipewire
+          - wireplumber
+          - pipewire-audio
+          - pipewire-alsa
+          - pipewire-pulse
+          - pipewire-jack
+          - lib32-pipewire-jack
+          - pulsemixer
+          - alsa-utils
+
+    - name: install filesystems
+      kewlfft.aur.aur:
+        name:
+          - btrfs-progs
+          - zfs-dkms
+          - ntfs-3g
+          - mtools
+          - dosfstools
+          - ntfs-3g
+          - gvfs
+          - gvfs-mtp
+          - gvfs-gphoto2
+          - gvfs-afc
+          - gvfs-smb
+
+    - name: install console
+      kewlfft.aur.aur:
+        name:
+          # https://www.youtube.com/watch?app=desktop&v=nxUTnZVdS64
+          - terminus-font
+          - zsh-antidote
+          - kitty
+          - nerd-fonts
+
+    - name: install langs
+      kewlfft.aur.aur:
+        name:
+          - nodejs
+          - npm
+          - lua
+          - lua-language-server
+
+    - name: install devel apps
+      kewlfft.aur.aur:
+        name:
+          - neovim
+          - code
+          - dbeaver
+
+    - name: install graphical apps
+      kewlfft.aur.aur:
+        name:
+          - steam
+          - vlc
+          - jstest-gtk-git
+          - firefox
+          - chromium
+          - onlyoffice-bin
+          - keepassxc
+          - qbittorrent
+
+    - name: install graphical file explorers
+      kewlfft.aur.aur:
+        name:
+          - pcmanfm
+          - qdirstat
+
+    - name: install console utils
+      kewlfft.aur.aur:
+        name:
+          - inetutils
+          - neofetch
+          - htop
+          - btop
+          - arch-install-scripts
+          - vifm
+          - rsync
+          - hdparm
+          - nvme-cli
+          - tmux
+          - f3
+          - deemix
+          - stow
+          - jq
+
+    - name: install desktop
+      kewlfft.aur.aur:
+        name:
+          - xorg
+          - xorg-xinit
+          - arandr
+          - picom
+          - qt6-base
+          - qt5-base
+          - gtk4
+          - gtk3
+          - gtk2
+          - i3-wm
+          - polybar
+          - network-manager-applet
+          - feh
+          - polkit
+          - lib32-polkit
+          - polkit-qt5
+
+          - sddm
+
+          - hyprland
+          - xdg-desktop-portal-hyprland
+          - polkit-kde-agent
+          - qt6-wayland
+          - qt5-wayland
+          - wofi
+          - mpvpaper
+          - wev
+          - ttf-font-awesome
+          - waybar
+
+    - name: install archivers
+      kewlfft.aur.aur:
+        name:
+          - unrar
+          - lzop
+          - lzip
+          - lrzip
+          - cpio
+          - arj
+          - p7zip
+
+    - name: install nvidia
+      kewlfft.aur.aur:
+        name:
+          - nvidia-dkms
+          - nvidia-settings
+          - libva-nvidia-driver
+          - drm_info
+
+    - name: install background services
+      kewlfft.aur.aur:
+        name:
+          - samba
