@@ -1,6 +1,7 @@
 ---
 - hosts: all
   become: true
+  become_user: aaron
   tasks:
     - name: Create directory to stow and git
       ansible.builtin.file:
@@ -9,3 +10,29 @@
         owner: aaron
         group: aaron
         mode: u=rwx,g=rx,o=rx
+
+    - name: Create video wallpaper dir
+      ansible.builtin.file:
+        path: /home/aaron//Videos/wallpapers/
+        state: directory
+        owner: aaron
+        group: aaron
+        mode: u=rwx,g=rx,o=rx
+
+    - name: Create img wallpaper dir
+      ansible.builtin.file:
+        path: /home/aaron/Pictures/wallpapers/
+        state: directory
+        owner: aaron
+        group: aaron
+        mode: u=rwx,g=rx,o=rx
+
+    - name: Clone a github repository
+      git:
+        repo: https://github.com/aaroncruces/dotfiles_personal.git
+        dest: /home/aaron/gits/
+        clone: yes
+        update: yes
+
+    - name: stow configfiles
+      ansible.builtin.command: "stow -v  --target=/home/aaron/ --dir=/home/aaron/gits/userconfigs ."
