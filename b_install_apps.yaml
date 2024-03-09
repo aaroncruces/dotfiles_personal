@@ -14,6 +14,7 @@
         name:
           - zsh
           - zramd
+          - reflector
 
     - name: install mesa
       kewlfft.aur.aur:
@@ -134,9 +135,8 @@
           - polkit
           - lib32-polkit
           - polkit-qt5
-
-          - sddm
-
+          - xdg-user-dirs
+          - xdg-utils
           - hyprland
           - xdg-desktop-portal-hyprland
           - polkit-kde-agent
@@ -171,3 +171,4 @@
       kewlfft.aur.aur:
         name:
           - samba
+          - avahi
