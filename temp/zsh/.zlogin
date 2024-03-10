@@ -7,7 +7,7 @@ if [ $TTY = "/dev/tty1" ];then
 fi
 
 if [ $TTY = "/dev/tty2" ];then
-  #exec startx
+  exec startx
 fi
 
 # IF I WANT XORG

@@ -1,0 +1,6 @@
+
+run as root
+nvidia-xconfig
+nvidia-settings
+
+save .nvidia-settings-rc and chown it as user

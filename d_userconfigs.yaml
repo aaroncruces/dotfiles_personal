@@ -36,4 +36,5 @@
         force: yes
 
     - name: stow configfiles
-      ansible.builtin.command: "stow -v  --target=/home/aaron/ --dir=/home/aaron/gits/userconfigs ."
+      ansible.builtin.command: "stow -v  --no-folding --target=/home/aaron/ --dir=/home/aaron/gits/userconfigs ."
+

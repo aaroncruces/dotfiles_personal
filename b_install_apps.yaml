@@ -168,6 +168,7 @@
           - nvidia-settings
           - libva-nvidia-driver
           - drm_info
+          - vulkan-tools
 
     - name: install background services
       kewlfft.aur.aur:
